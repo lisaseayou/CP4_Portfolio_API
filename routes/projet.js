@@ -1,15 +1,8 @@
-const usersRouter = require("express").Router();
-const {
-  getUsers,
-  createUser,
-  loginUser,
-  getProfile,
-} = require("../controllers/users");
-const { verifyToken } = require("../middleware/auth");
+const projetRouter = require("express").Router();
+const { getProjet, createProjet, deleteProjet } = require("../controllers/projet");
 
-usersRouter.get("/", getUsers);
-usersRouter.post("/", createUser);
-usersRouter.post("/login", loginUser);
-usersRouter.get("/me", verifyToken, getProfile);
+projetRouter.get("/", getProjet);
+projetRouter.post("/", createProjet);
+projetRouter.delete("/:id", deleteProjet);
 
-module.exports = usersRouter;
+module.exports = projetRouter;

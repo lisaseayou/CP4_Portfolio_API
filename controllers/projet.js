@@ -1,30 +1,31 @@
-const getAds = async (req, res) => {
-    const [ads] = await findMany(req.query);
-    res.status(200).json(ads);
+const { findMany, create, delete_ } = require("../models/projet");
+
+const getProjet = async (req, res) => {
+    const [projet] = await findMany(req.query);
+    res.status(200).json(projet);
   };
   
-  const createAd = async (req, res) => {
+  const createProjet = async (req, res) => {
     try {
       await create(req.body);
-      res.status(201).send("Ad has been created");
+      res.status(201).send("Projet has been created");
     } catch (err) {
-      res.status(500).send("Error creating ad");
+      res.status(500).send("Error creating projet");
     }
   };
   
-  const deleteAd = async (req, res) => {
+  const deleteProjet = async (req, res) => {
     try {
       await delete_(req.params.id);
       res.status(204).send();
     } catch (err) {
-      res.status(500).send("Error deleting ad");
+      res.status(500).send("Error deleting projet");
     }
   };
   
   module.exports = {
-    getAds,
-    createAd,
-    getAd,
-    deleteAd,
+    getProjet,
+    createProjet,
+    deleteProjet,
   };
   

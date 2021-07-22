@@ -1,20 +1,21 @@
 const db = require("../db");
 
-const find = async () => {
+const findMany= async () => {
   return db.promise().query("select * from projet");
 };
 
-const create = async ({ firstname, lastname, email, password }) => {
+const create = async ({ title, description, image, year, techno }) => {
   return db
     .promise()
     .query(
-      "INSERT INTO Users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)",
-      [firstname, lastname, email, password]
+      "INSERT INTO projet (title, description, image, year, techno) VALUES (?, ?, ?, ?, ?)",
+      [title, description, image, year, techno]
     );
 };
 
-const findByEmail = async (email) => {
-  return db.promise().query("SELECT * FROM Users WHERE email = ?", [email]);
-};
 
-module.exports = { find, create, findByEmail };
+const delete_ = (id) => {
+    return db.promise().query("DELETE FROM projet WHERE id=?", [id]);
+  };
+
+module.exports = { findMany, create, delete_ };
